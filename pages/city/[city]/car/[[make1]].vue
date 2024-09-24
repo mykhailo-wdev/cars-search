@@ -1,5 +1,5 @@
 <template>
     <div>
-        <car-card></car-card>
+        <car-cards></car-cards>
     </div>
 </template>
