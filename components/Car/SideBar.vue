@@ -4,7 +4,7 @@
             <div class="p-5 flex justify-between relative cursor-pointer border-b">
                 <h3> Location</h3>
                 <h3 class="text-blue-400 capitalize" @click="updateModal('location')">{{ route.params.city }}</h3>
-                <div v-if="modal.location" class="absolute border shadow left-56 p-5 top-1 -m-1 bg-white">
+                <div v-if="modal.location" class="absolute z-20 border shadow left-56 p-5 top-1 -m-1 bg-white">
                 <input type="text" class="border p-1 rounded" v-model="city">
                 <button class="bg-blue-400 w-full mt-2 rounded text-white p-1" @click="onChangeLocation">Apply</button>
                 </div>
