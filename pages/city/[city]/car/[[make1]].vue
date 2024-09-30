@@ -1,5 +1,22 @@
 <template>
     <div>
-        <car-cards></car-cards>
+        <car-cards v-if="cars.length" :cars="cars"></car-cards>
+        <h1 v-else class="text-red-600">No cars fond with filters</h1>
     </div>
 </template>
+
+<script setup>
+const route = useRoute()
+
+const { data: cars, refresh } = await useFetchCars(route.params.city, {
+    minPrice: route.query.minPrice,
+    maxPrice: route.query.maxPrice,
+    make: route.params.make1
+})
+
+watch(() => route.query, () => {
+    window.location.reload(true)
+})
+
+
+</script>

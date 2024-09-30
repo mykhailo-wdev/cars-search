@@ -12,7 +12,7 @@
               type="email"
               id="email"
               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              required
+            
             />
           </div>
   
@@ -24,7 +24,7 @@
               type="password"
               id="password"
               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              required
+            
             />
           </div>
   
@@ -50,9 +50,6 @@
   </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-
 const client = useSupabaseAuthClient()
 const router = useRouter()
 const email = ref('')

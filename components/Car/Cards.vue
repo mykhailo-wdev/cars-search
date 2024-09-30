@@ -1,5 +1,8 @@
 <template>
     <div class="w-full">
+        <div v-if="cars.length === 0">
+            <p>No cars of this model available.</p>
+        </div>
         <car-card 
             v-for="car in cars" 
             :key="car.id" 
@@ -12,8 +15,10 @@
 </template>
 
 <script setup>
-const { cars } = useCars()
 const favorite = useLocalStorage('favorite', {})
+const props = defineProps({
+    cars: Array
+})
 
 const handleFavorite = (id) => {
     if(id in favorite.value) {
