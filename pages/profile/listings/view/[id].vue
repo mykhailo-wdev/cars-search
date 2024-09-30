@@ -3,7 +3,8 @@
         <car-message-card></car-message-card> 
         <car-message-card></car-message-card>
         <car-message-card></car-message-card>
-        <car-message-card></car-message-card>   
+        <car-message-card></car-message-card> 
+        <car-message-card></car-message-card> 
     </div>
 </template>
 
