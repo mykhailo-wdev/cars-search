@@ -7,7 +7,7 @@
         />
         <div class="flex h-full" @click="navigateTo(`/car/${car.name}-${car.id}`)">
             <NuxtImg  
-                :src="car.image" 
+                :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`" 
                 alt=""
                 class="w-[300px] h-full"
             />
@@ -31,11 +31,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['favor'])
 
-
-
-// const favored = useState(`favored-${props.car.id}`, () => {
-//     return false
-// })
+const config = useRuntimeConfig()
 
 
 </script>

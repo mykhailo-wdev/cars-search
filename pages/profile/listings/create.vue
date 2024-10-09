@@ -47,6 +47,7 @@ definePageMeta({
 
 const { makes } = useCars()
 const user = useSupabaseUser()
+const supabase = useSupabaseClient()
 
 const info = useState('adInfo', () => {
     return {
@@ -59,7 +60,7 @@ const info = useState('adInfo', () => {
         seats: '',
         features: '',
         description: '',
-        image: 'sddsvsd'
+        image: null
 
     }
 })
@@ -69,6 +70,7 @@ const errorMessage = ref('')
 const onChangeInput = (data, name) => {
     info.value[name] = data 
 }
+
 
 const inputs = [
     {
@@ -124,36 +126,64 @@ const isButtonDisabled = computed(() => {
 
 
 const handleSubmit = async () => {
-    const body = Object.assign({}, {
-    make: info.value.make,
-    model: info.value.model,
-    year: parseInt(info.value.year),
-    miles: parseInt(info.value.miles),
-    price: parseInt(info.value.price),
-    city: info.value.city.toLowerCase(),
-    features: info.value.features.split(', '),
-    description: info.value.description,
-    image: info.value.image,
-    numberOfSeats: parseInt(info.value.seats),
-    name: `${info.value.make} ${info.value.model}`,
-    listerId: user.value.id
-});
+    const file = info.value.image;
 
-    delete body.seats;
+    if (!file) {
+        errorMessage.value = 'Пожалуйста, выберите изображение для загрузки.';
+        return;
+    }
+
+    if (!(file instanceof File) || !file.type.startsWith('image/')) {
+        errorMessage.value = 'Выбранный файл не является изображением.';
+        return;
+    }
+
+    const fileName = `${Math.floor(Math.random() * 100000000000000)}.${file.name.split('.').pop()}`;
 
     try {
-        const response = await $fetch('/api/car/listings', {
+        const { data, error } = await supabase.storage
+            .from('images')
+            .upload(`public/${fileName}`, file, {
+                contentType: file.type,
+            });
+
+        if (error) {
+            console.error('Supabase upload error:', error);
+            errorMessage.value = error.message || 'Не удалось загрузить изображение';
+            return;
+        }
+
+        console.log('Загруженный файл:', data.path);
+
+        const body = {
+            make: info.value.make,
+            model: info.value.model,
+            year: parseInt(info.value.year),
+            miles: parseInt(info.value.miles),
+            price: parseInt(info.value.price),
+            city: info.value.city.toLowerCase(),
+            features: info.value.features.split(', '),
+            description: info.value.description,
+            image: data.path,
+            numberOfSeats: parseInt(info.value.seats),
+            name: `${info.value.make} ${info.value.model}`,
+            listerId: user.value.id,
+        };
+
+        delete body.seats;
+
+        await $fetch('/api/car/listings', {
             method: 'post',
-            body
+            body,
         });
+
         navigateTo('/profile/listings');
     } catch (err) {
         console.error('FetchError:', err);
-        errorMessage.value = err.statusMessage || 'An error occurred while creating the listing.';
+        errorMessage.value = err.message || 'Произошла ошибка при создании объявления.';
+        await supabase.storage.from('images').remove([`public/${fileName}`]);
     }
 };
-
-
 
 
 </script>
