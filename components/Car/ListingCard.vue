@@ -1,7 +1,7 @@
 <template>
     <div class="shadow rounded overflow-hidden flex justify-between mb-4">
         <div class="flex">
-            <img :src="listing.url"
+            <img :src="`${config.public.supabase.url}/storage/v1/object/public/images/${listing.image}`"
                 class="w-80 mr-3 h-44"
                 alt="" />
             <div class="p-3">
@@ -25,4 +25,5 @@ const props = defineProps({
 })
 
 const emits = defineEmits(['deleteClick'])
+const config = useRuntimeConfig()
 </script> 
