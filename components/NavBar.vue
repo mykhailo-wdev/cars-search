@@ -23,7 +23,7 @@ const logout = async () => {
             throw error
         }
 
-        localStorage.removeItem('supabase.auth.token')
+        // localStorage.removeItem('supabase.auth.token')
 
         await $fetch('/api/_supabase/session', {
             method: 'POST',
