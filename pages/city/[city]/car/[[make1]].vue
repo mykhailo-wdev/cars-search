@@ -1,7 +1,7 @@
 <template>
     <div>
         <car-cards v-if="cars.length" :cars="cars"></car-cards>
-        <h1 v-else class="text-red-600">No cars fond with filters</h1>
+        <h1 v-else class="text-red-600 text-2xl font-bold text-center mt-4 mb-2 p-4 border border-red-500 bg-red-100 rounded-lg shadow-md">No cars fond with filters</h1>
     </div>
 </template>
 

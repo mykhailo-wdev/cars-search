@@ -1,31 +1,30 @@
 <template>
     <div>
-        <div class="shadow border w-64 mr-10 z-30 h-[190px]">
+        <div class="shadow border w-64 mr-10 md:mr-0 z-30 ">
             <!-- LOCATION START -->
-            <div class="p-5 flex justify-between relative cursor-pointer border-b">
+            <div class="p-5 flex flex-col md:flex-row justify-between md:items-center items-start relative cursor-pointer border-b">
                 <h3> Location</h3>
-                <h3 class="text-blue-800 capitalize" @click="updateModal('location')">{{ route.params.city }}</h3>
-                <div v-if="modal.location" class="absolute z-20 border shadow left-56 p-5 top-1 -m-1 bg-white">
-                <input type="text" class="border p-1 rounded" v-model="city">
+                <h3 class="text-blue-800 capitalize font-bold cursor-pointer bg-blue-100 hover:bg-blue-300 active:bg-blue-400 transition duration-200 rounded p-2 shadow-md" @click="updateModal('location')">{{ route.params.city }}</h3>
+                <div v-if="modal.location" class="absolute border shadow p-5 top-1 -m-1 bg-white z-50 w-[160px] sm:w-[160px] md:w-[160px] lg:w-[280px] right-1 md:left-56">
+                <input type="text" class="w-full border p-1 rounded" v-model="city">
                 <button class="bg-blue-400 w-full mt-2 rounded text-white p-1" @click="onChangeLocation">Apply</button>
                 </div>
             </div>
             <!-- LOCATION END -->
 
             <!-- MAKES START -->
-            <div class="p-5 flex justify-between relative cursor-pointer border-b">
+            <div class="p-5 flex flex-col md:flex-row justify-between md:items-center items-start relative cursor-pointer border-b">
                 <h3>Make</h3>
-                <h3 class="text-blue-800 capitalize" @click="updateModal('make')">
+                <h3 class="text-blue-800 capitalize font-bold cursor-pointer bg-blue-100 hover:bg-blue-300 active:bg-blue-400 transition duration-200 rounded p-2 shadow-md" @click="updateModal('make')">
                     <!-- {{ route.params.make || "Any" }} -->
                     {{ route.params.make1 || "Any" }}
                 </h3>
-                <div class="absolute border shadow left-56 p-5 top-1 -m-1 w-[600px] flex justify-between flex-wrap bg-white z-20"
+                <div class="absolute border shadow p-5 top-1 -m-1 bg-white z-50 w-[160px] sm:w-[160px] md:w-[45vw] lg:w-[35vw] max-h-[400px] overflow-y-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2 right-1 md:left-56"
                     v-if="modal.make"
                 >
                     <h4 
                         v-for="make in makes" 
                         :key="make" 
-                        class="w-1/3"
                         @click="onChangeMake(make)"
                         >
                         {{ make }}
@@ -35,20 +34,20 @@
             <!-- MAKES END -->
 
             <!-- PRICE START -->
-            <div class="p-5 flex justify-between relative cursor-pointer border-b">
+            <div class="p-5 flex flex-col md:flex-row justify-between md:items-center items-start relative cursor-pointer border-b">
                 <h3>Price</h3>
-                <h3 class="text-blue-800 capitalize" @click="updateModal('price')">{{ priceRangeText }}</h3>
-                <div class="absolute border shadow left-56 p-5 top-1 -m-1 bg-white z-20"
+                <h3 class="text-blue-800 capitalize font-bold cursor-pointer bg-blue-100 hover:bg-blue-300 active:bg-blue-400 transition duration-200 rounded p-2 shadow-md" @click="updateModal('price')">{{ priceRangeText }}</h3>
+                <div class="absolute border shadow p-5 top-1 -m-1 bg-white z-50 w-[160px] sm:w-[160px] md:w-[160px] lg:w-[280px] right-1 md:left-56"
                     v-if="modal.price"
                 >
                     <input 
-                        class="border p-1 rounded" 
+                        class="w-full border p-1 rounded" 
                         type="text" 
                         placeholder="Min" 
                         v-model="priceRange.min" 
                     />
                     <input 
-                        class="border p-1 rounded" 
+                        class="w-full border p-1 rounded" 
                         type="text" 
                         placeholder="Max" 
                         v-model="priceRange.max" 
