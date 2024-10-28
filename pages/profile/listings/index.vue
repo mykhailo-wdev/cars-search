@@ -15,7 +15,7 @@
                 cursor-pointer
                 ">+</NuxtLink>
         </div>
-        <div class="shadow rounded p-3 mt-5">
+        <div class="shadow rounded p-2 mt-3 md:p-3 md:mt-5">
             <car-listing-card 
                 v-for="listing in listings" 
                 :key="listing.id"

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="mt-32 flex">
+        <div class="mt-8 sm:mt-8 md:mt-16 lg:mt-32 xl:mt-32 flex flex-col space-y-4 md:space-y-4 lg:space-y-0 lg:flex-row lg:space-x-4">
             <NuxtErrorBoundary>
                 <car-side-bar></car-side-bar>
                 <NuxtPage/>

@@ -10,7 +10,7 @@
                         class="opacity-0 absolute cursor-pointer" 
                         @change="onImageUpload"
                     />
-                    <span class="cursor-pointer">Browse file</span>
+                    <span class="cursor-pointer bg-green-600 text-white font-semibold py-2 px-4 rounded hover:bg-green-700 transition duration-200">Browse file</span>
                 </div>
                 <div class="border p-2 mt-3 w-56" v-if="image.preview">
                     <img

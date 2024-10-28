@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full">
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
         <div v-if="cars.length === 0">
             <p>No cars of this model available.</p>
         </div>

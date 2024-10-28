@@ -3,7 +3,7 @@
         <div class="mt-24">
             <h1 class="text-6xl">Create a new Listing</h1>
         </div>
-        <div class="shadow rounded p-3 mt-5 flex flex-wrap justify-between">
+        <div class="shadow rounded p-3 mt-5 flex flex-col md:flex-row flex-wrap justify-between">
             <car-ad-select 
                 title="Make *" 
                 :options="makes" 
